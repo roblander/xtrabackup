@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: db/Dockerfile
+    ports:
+      - 3306:3306
+    volumes:
+      - /usr/local/var/mysql:/var/lib/mysql
+
+  xtrabackup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASES=mysql
+      - USER=root
+      - PASSWORD=
+      - HOST=db
+      - LEFT_BACKUPS=10
+    volumes:
+      - /usr/local/var/mysql:/root/data
+      - ./backups:/root/backups
