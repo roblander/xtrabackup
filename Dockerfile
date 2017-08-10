@@ -18,7 +18,7 @@ RUN chmod +x restore.sh
 RUN chmod +x rotate.sh
 
 # Setup cron
-ADD crontab /etc/cron.d/crontab
-RUN chmod 0644 /etc/cron.d/crontab
+ADD crontab /etc/cron.d/hello-cron
+RUN chmod 0644 /etc/cron.d/hello-cron
 RUN touch /var/log/cron.log
 CMD cron && tail -f /var/log/cron.log

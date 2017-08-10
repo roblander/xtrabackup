@@ -1,14 +1,22 @@
 #!/bin/bash
 
-xtrabackup --backup \
-           --databases=$DATABASES \
-           --datadir=/root/data \
+# Restores the backup
+#
+# BACKUP_DIR is a path to a dir with uncompressed backup
+
+# tar xvf backup-2017-07-31-fisikal_staging.tar.gz
+
+xtrabackup --prepare \
+           --target-dir=$BACKUP_DIR;
+
+mkdir /root/data.copy
+mv /root/data/* /root/data.copy
+
+xtrabackup --move-back \
+           --target-dir=$BACKUP_DIR
+           --datadir=/root/data
            --password=$PASSWORD \
-           --target-dir=/root/backup \
            --host=$HOST \
            --user=$USER;
 
-BACKUP="backup-$(date +%Y-%m-%d)-${DATABASES// /_}.tar.gz";
-tar -zcvf $BACKUP /root/backup;
-rm -rf /root/backup/*;
-mv $BACKUP /root/backups;
+# mysql_upgrade -u root -p --force
