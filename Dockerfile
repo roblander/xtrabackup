@@ -9,6 +9,8 @@ WORKDIR /root
 RUN wget https://repo.percona.com/apt/percona-release_0.1-4.xenial_all.deb && dpkg -i percona-release_0.1-4.xenial_all.deb && rm percona-release_0.1-4.xenial_all.deb
 RUN apt-get update && apt-get install -y percona-xtrabackup-24 && rm -rf /var/lib/apt
 
+USER root:root
+
 ADD backup.sh backup.sh
 ADD backup.sh restore.sh
 ADD backup.sh rotate.sh
