@@ -1,4 +1,4 @@
 0 0 * * * root echo "Now is $(date)" >> /var/log/cron.log 2>&1
-0 4 */5 * * root /root/backup.sh >> /var/log/cron.log 2>&1
-0 4 */5 * * root /root/rotate.sh >> /var/log/cron.log 2>&1
+0 4 */5 * * . /root/envs.sh; root /root/backup.sh >> /var/log/cron.log 2>&1
+0 4 */5 * * . /root/envs.sh; root /root/rotate.sh >> /var/log/cron.log 2>&1
 # Don't remove the empty line at the end of this file. It is required to run the cron job
