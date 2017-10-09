@@ -20,6 +20,7 @@ services:
       - PASSWORD=
       - HOST=db
       - LEFT_BACKUPS=10
+      - BACKUP_FREQUENCY_IN_DAYS=2
     volumes:
       - /usr/local/var/mysql:/root/data
       - ./backups:/root/backups
