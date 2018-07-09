@@ -8,7 +8,7 @@ xtrabackup --backup \
            --host=$HOST \
            --user=$USER;
 
-BACKUP="/tmp/backup-$(date +%Y-%m-%d)-${DATABASES// /_}.tar.gz";
+BACKUP="/tmp/backup-$(date +%Y-%m-%d-%H-%M)-${DATABASES// /_}.tar.gz";
 
 tar -zcvf $BACKUP /root/backup;
 rm -rf /root/backup/*;
