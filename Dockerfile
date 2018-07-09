@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y percona-xtrabackup-24 && rm -rf /var/li
 
 USER root:root
 
+RUN mkdir backup
+
 ADD backup.sh backup.sh
 ADD backup.sh restore.sh
 ADD backup.sh rotate.sh
