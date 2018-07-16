@@ -14,8 +14,8 @@ USER root:root
 RUN mkdir backup
 
 ADD backup.sh backup.sh
-ADD backup.sh restore.sh
-ADD backup.sh rotate.sh
+ADD restore.sh restore.sh
+ADD rotate.sh rotate.sh
 
 RUN chmod +x backup.sh
 RUN chmod +x restore.sh
